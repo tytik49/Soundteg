@@ -3,50 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SoundTag</title>
+    <title>Поиск звуков</title>
     <style>
         /* Стили для body */
         body {
             font-family: Arial, sans-serif;
             background-color: #121212; /* Темный фон */
             color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
-            overflow: hidden;
-        }
-
-        /* Анимация появления контейнера */
-        .container {
-            text-align: center;
-            opacity: 0;
-            animation: fadeIn 2s forwards;
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* Стили для заголовка */
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            animation: slideDown 1s ease-out;
-        }
-
-        @keyframes slideDown {
-            from {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+            padding: 20px;
         }
 
         /* Стили для поисковой строки */
@@ -58,7 +23,8 @@
             background-color: #1e1e1e;
             color: white;
             outline: none;
-            width: 300px;
+            width: 100%;
+            max-width: 400px;
             margin-bottom: 20px;
         }
 
@@ -66,118 +32,82 @@
             color: #6f42c1;
         }
 
-        /* Стили для кнопок */
-        .buttons {
+        /* Стили для списка звуков */
+        #soundList {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-        }
-
-        button {
-            margin: 10px;
-            padding: 15px 30px;
-            font-size: 16px;
-            color: white;
-            background: linear-gradient(45deg, #007BFF, #6f42c1); /* Градиент от синего к фиолетовому */
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            opacity: 0;
-            animation: slideUp 1s ease-out 0.5s forwards;
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        /* Эффекты при наведении на кнопки */
-        button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(111, 66, 193, 0.5); /* Фиолетовая тень */
-        }
-
-        /* Стили для результатов поиска */
-        #results {
-            margin-top: 20px;
-            text-align: left;
+            gap: 10px;
         }
 
         .sound-item {
-            padding: 10px;
-            border-bottom: 1px solid #6f42c1;
+            padding: 15px;
+            border: 1px solid #6f42c1;
+            border-radius: 10px;
+            background-color: #1e1e1e;
             cursor: pointer;
-            transition: background-color 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .sound-item:hover {
-            background-color: #1e1e1e;
+            transform: scale(1.02);
+            box-shadow: 0 0 10px rgba(111, 66, 193, 0.5); /* Фиолетовая тень */
         }
 
-        /* Стили для ссылки */
-        #link {
-            margin-top: 20px;
+        .sound-item h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .sound-item p {
+            margin: 5px 0 0;
             font-size: 14px;
-            opacity: 0;
-            animation: fadeIn 1s ease-out 1.5s forwards;
-        }
-
-        #link a {
-            color: #6f42c1;
-            text-decoration: none;
-        }
-
-        #link a:hover {
-            text-decoration: underline;
+            color: #aaa;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>SoundTag</h1>
-        <!-- Поисковая строка -->
-        <input type="text" id="searchInput" placeholder="Введите название звука...">
-        <!-- Кнопки -->
-        <div class="buttons">
-            <button onclick="location.href='tutor.html'">Тутор</button>
-            <button onclick="location.href='https://t.me/ваш_канал'">Наш Telegram</button>
-        </div>
-        <!-- Результаты поиска -->
-        <div id="results"></div>
-        <!-- Ссылка (если нужно) -->
-        <p id="link"></p>
-    </div>
+    <!-- Поисковая строка -->
+    <input type="text" id="searchInput" placeholder="Введите ключевое слово (например, стоны, бас, буст)...">
+
+    <!-- Список звуков -->
+    <div id="soundList"></div>
 
     <script>
         // Пример базы звуков
         const sounds = [
-            { name: "Звук дождя", url: "sounds/rain.mp3", image: "images/rain.jpg" },
-            { name: "Звук леса", url: "sounds/forest.mp3", image: "images/forest.jpg" },
-            { name: "Звук океана", url: "sounds/ocean.mp3", image: "images/ocean.jpg" },
+            { name: "Стоны", description: "Эмоциональные стоны", url: "sounds/moans.mp3", image: "images/moans.jpg" },
+            { name: "Бас буст", description: "Мощный бас", url: "sounds/bass_boost.mp3", image: "images/bass.jpg" },
+            { name: "Дождь", description: "Звук дождя", url: "sounds/rain.mp3", image: "images/rain.jpg" },
+            { name: "Океан", description: "Звук океана", url: "sounds/ocean.mp3", image: "images/ocean.jpg" },
         ];
 
-        // Поиск звуков
+        // Элементы DOM
         const searchInput = document.getElementById('searchInput');
-        const resultsDiv = document.getElementById('results');
+        const soundList = document.getElementById('soundList');
 
-        searchInput.addEventListener('input', () => {
-            const query = searchInput.value.toLowerCase();
-            resultsDiv.innerHTML = sounds
-                .filter(sound => sound.name.toLowerCase().includes(query))
+        // Функция для отображения звуков
+        function displaySounds(filteredSounds) {
+            soundList.innerHTML = filteredSounds
                 .map(sound => `
                     <div class="sound-item" onclick="playSound('${sound.url}', '${sound.image}')">
-                        <p>${sound.name}</p>
+                        <h3>${sound.name}</h3>
+                        <p>${sound.description}</p>
                     </div>
                 `)
                 .join('');
+        }
+
+        // Поиск звуков
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.toLowerCase();
+            const filteredSounds = sounds.filter(sound =>
+                sound.name.toLowerCase().includes(query) || sound.description.toLowerCase().includes(query)
+            );
+            displaySounds(filteredSounds);
         });
+
+        // Изначально отображаем все звуки
+        displaySounds(sounds);
 
         // Воспроизведение звука
         function playSound(url, image) {
