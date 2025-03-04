@@ -26,15 +26,17 @@
 
     <script>
         const urlParams = new URLSearchParams(window.location.search);
-        const soundUrl = urlParams.get('sounds');
-        const imageUrl = urlParams.get('images');
+        const soundUrl = urlParams.get('sound');
+        const imageUrl = urlParams.get('image');
 
         const audioPlayer = document.getElementById('audioPlayer');
         const soundImage = document.getElementById('soundImage');
 
-        soundImage.src = `/${imageUrl}`;  // Исправленный путь
-        audioPlayer.src = `/${soundUrl}`; // Исправленный путь
+        // Указываем полные пути к файлам
+        soundImage.src = `images/${imageUrl}`;  // Путь к изображению
+        audioPlayer.src = `sounds/${soundUrl}`; // Путь к звуку
 
+        // Воспроизводим звук на полной громкости
         audioPlayer.volume = 1.0;
     </script>
 </body>
