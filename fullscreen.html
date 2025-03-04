@@ -25,19 +25,16 @@
     <audio id="audioPlayer" autoplay style="display:none;"></audio>
 
     <script>
-        // Получаем параметры из URL
         const urlParams = new URLSearchParams(window.location.search);
         const soundUrl = urlParams.get('sound');
         const imageUrl = urlParams.get('image');
 
-        // Устанавливаем картинку и звук
         const audioPlayer = document.getElementById('audioPlayer');
         const soundImage = document.getElementById('soundImage');
 
         soundImage.src = `images/${imageUrl}`;
         audioPlayer.src = `sounds/${soundUrl}`;
 
-        // Воспроизводим звук на полной громкости
         audioPlayer.volume = 1.0;
     </script>
 </body>
