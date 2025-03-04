@@ -22,7 +22,7 @@
 </head>
 <body>
     <img id="soundImage" src="" alt="Изображение">
-    <audio id="audioPlayer" autoplay style="display:none;"></audio>
+    <audio id="audioPlayer" autoplay muted></audio>
 
     <script>
         const urlParams = new URLSearchParams(window.location.search);
@@ -39,9 +39,10 @@
         // Воспроизводим звук на полной громкости
         audioPlayer.volume = 1.0;
 
-        // Попытка автовоспроизведения после взаимодействия с пользователем
-        document.body.addEventListener('click', () => {
-            audioPlayer.play();
+        // Пытаемся включить звук после загрузки страницы
+        audioPlayer.muted = false; // Отключаем mute
+        audioPlayer.play().catch(error => {
+            console.error("Автовоспроизведение заблокировано браузером.");
         });
     </script>
 </body>
