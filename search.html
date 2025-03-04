@@ -89,7 +89,7 @@
         function displaySounds(filteredSounds) {
             soundList.innerHTML = filteredSounds
                 .map(sound => `
-                    <div class="sound-item" onclick="playSound('${sound.url}', '${sound.image}')">
+                    <div class="sound-item" onclick="openPlayer('${sound.url}', '${sound.image}', '${sound.name}')">
                         <h3>${sound.name}</h3>
                         <p>${sound.description}</p>
                     </div>
@@ -109,10 +109,10 @@
         // Изначально отображаем все звуки
         displaySounds(sounds);
 
-        // Воспроизведение звука
-        function playSound(url, image) {
-            const link = `player.html?sound=${url}&image=${image}`;
-            window.location.href = link;
+        // Функция для открытия плеера
+        function openPlayer(url, image, name) {
+            const playerUrl = `player.html?sound=${url}&image=${image}&name=${encodeURIComponent(name)}`;
+            window.open(playerUrl, '_blank');
         }
     </script>
 </body>
