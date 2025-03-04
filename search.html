@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поиск звуков</title>
+    <style>
+        /* Стили для body */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212; /* Темный фон */
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Стили для поисковой строки */
+        #searchInput {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #6f42c1;
+            border-radius: 25px;
+            background-color: #1e1e1e;
+            color: white;
+            outline: none;
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 20px;
+        }
+
+        #searchInput::placeholder {
+            color: #6f42c1;
+        }
+
+        /* Стили для списка звуков */
+        #soundList {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .sound-item {
+            padding: 15px;
+            border: 1px solid #6f42c1;
+            border-radius: 10px;
+            background-color: #1e1e1e;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .sound-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 10px rgba(111, 66, 193, 0.5); /* Фиолетовая тень */
+        }
+
+        .sound-item h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .sound-item p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <!-- Поисковая строка -->
+    <input type="text" id="searchInput" placeholder="Введите ключевое слово (например, стоны, бас, буст)...">
+
+    <!-- Список звуков -->
+    <div id="soundList"></div>
+
+    <script>
+        // Пример базы звуков
+        const sounds = [
+            { name: "Стоны", description: "Эмоциональные стоны", url: "sounds/moans.mp3", image: "images/moans.jpg" },
+            { name: "Бас буст", description: "Мощный бас", url: "sounds/bass_boost.mp3", image: "images/bass.jpg" },
+            { name: "Дождь", description: "Звук дождя", url: "sounds/rain.mp3", image: "images/rain.jpg" },
+            { name: "Океан", description: "Звук океана", url: "sounds/ocean.mp3", image: "images/ocean.jpg" },
+        ];
+
+        // Элементы DOM
+        const searchInput = document.getElementById('searchInput');
+        const soundList = document.getElementById('soundList');
+
+        // Функция для отображения звуков
+        function displaySounds(filteredSounds) {
+            soundList.innerHTML = filteredSounds
+                .map(sound => `
+                    <div class="sound-item" onclick="playSound('${sound.url}', '${sound.image}')">
+                        <h3>${sound.name}</h3>
+                        <p>${sound.description}</p>
+                    </div>
+                `)
+                .join('');
+        }
+
+        // Поиск звуков
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.toLowerCase();
+            const filteredSounds = sounds.filter(sound =>
+                sound.name.toLowerCase().includes(query) || sound.description.toLowerCase().includes(query)
+            );
+            displaySounds(filteredSounds);
+        });
+
+        // Изначально отображаем все звуки
+        displaySounds(sounds);
+
+        // Воспроизведение звука
+        function playSound(url, image) {
+            const link = `player.html?sound=${url}&image=${image}`;
+            window.location.href = link;
+        }
+    </script>
+</body>
+</html>
