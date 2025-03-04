@@ -38,6 +38,11 @@
 
         // Воспроизводим звук на полной громкости
         audioPlayer.volume = 1.0;
+
+        // Попытка автовоспроизведения после взаимодействия с пользователем
+        document.body.addEventListener('click', () => {
+            audioPlayer.play();
+        });
     </script>
 </body>
 </html>
