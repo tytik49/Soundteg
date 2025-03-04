@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Плеер</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #121212;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .player-container {
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            border: 2px solid #6f42c1;
+            border-radius: 15px;
+            background-color: #1e1e1e;
+        }
+        img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        audio {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background: linear-gradient(45deg, #007BFF, #6f42c1);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(111, 66, 193, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="player-container">
+        <img id="soundImage" src="" alt="Изображение">
+        <audio id="audioPlayer" controls>
+            <source src="" type="audio/mpeg">
+            Ваш браузер не поддерживает аудио.
+        </audio>
+        <button onclick="copyLink()">Скопировать ссылку</button>
+    </div>
+
+    <script>
+        // Получаем параметры из URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const soundUrl = urlParams.get('sound');
+        const imageUrl = urlParams.get('image');
+        const soundName = decodeURIComponent(urlParams.get('name'));
+
+        // Устанавливаем картинку и звук
+        const audioPlayer = document.getElementById('audioPlayer');
+        const soundImage = document.getElementById('soundImage');
+
+        soundImage.src = `images/${imageUrl}`;
+        audioPlayer.src = `sounds/${soundUrl}`;
+
+        // Функция для копирования ссылки
+        function copyLink() {
+            const link = `fullscreen.html?sound=${soundUrl}&image=${imageUrl}`;
+            navigator.clipboard.writeText(link).then(() => {
+                alert('Ссылка скопирована!');
+            });
+        }
+    </script>
+</body>
+</html>
