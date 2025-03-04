@@ -32,8 +32,8 @@
         const audioPlayer = document.getElementById('audioPlayer');
         const soundImage = document.getElementById('soundImage');
 
-        soundImage.src = `images/${imageUrl}`;
-        audioPlayer.src = `sounds/${soundUrl}`;
+        soundImage.src = `/${imageUrl}`;  // Исправленный путь
+        audioPlayer.src = `/${soundUrl}`; // Исправленный путь
 
         audioPlayer.volume = 1.0;
     </script>
