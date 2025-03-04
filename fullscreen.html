@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Полноэкранный плеер</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+        }
+        img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <img id="soundImage" src="" alt="Изображение">
+    <audio id="audioPlayer" autoplay style="display:none;"></audio>
+
+    <script>
+        // Получаем параметры из URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const soundUrl = urlParams.get('sound');
+        const imageUrl = urlParams.get('image');
+
+        // Устанавливаем картинку и звук
+        const audioPlayer = document.getElementById('audioPlayer');
+        const soundImage = document.getElementById('soundImage');
+
+        soundImage.src = `images/${imageUrl}`;
+        audioPlayer.src = `sounds/${soundUrl}`;
+
+        // Воспроизводим звук на полной громкости
+        audioPlayer.volume = 1.0;
+    </script>
+</body>
+</html>
