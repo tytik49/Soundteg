@@ -61,24 +61,27 @@
     </div>
 
     <script>
-        // Получаем параметры из URL
         const urlParams = new URLSearchParams(window.location.search);
         const soundUrl = urlParams.get('sound');
         const imageUrl = urlParams.get('image');
         const soundName = decodeURIComponent(urlParams.get('name'));
 
-        // Устанавливаем картинку и звук
         const audioPlayer = document.getElementById('audioPlayer');
         const soundImage = document.getElementById('soundImage');
 
         soundImage.src = `images/${imageUrl}`;
         audioPlayer.src = `sounds/${soundUrl}`;
 
-        // Функция для копирования ссылки
         function copyLink() {
-            const link = `fullscreen.html?sound=${soundUrl}&image=${imageUrl}`;
-            navigator.clipboard.writeText(link).then(() => {
-                alert('Ссылка скопирована!');
+            // Получаем базовый URL (например, https://username.github.io/repository/)
+            const baseUrl = window.location.origin + window.location.pathname.split('/').slice(0, -1).join('/');
+            
+            // Формируем ссылку на fullscreen.html
+            const fullscreenUrl = `${baseUrl}/fullscreen.html?sound=${soundUrl}&image=${imageUrl}`;
+            
+            // Копируем ссылку в буфер обмена
+            navigator.clipboard.writeText(fullscreenUrl).then(() => {
+                alert('Ссылка скопирована: ' + fullscreenUrl);
             });
         }
     </script>
