@@ -49,6 +49,23 @@
             }
         }
 
+        /* Стили для поисковой строки */
+        #searchInput {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #6f42c1;
+            border-radius: 25px;
+            background-color: #1e1e1e;
+            color: white;
+            outline: none;
+            width: 300px;
+            margin-bottom: 20px;
+        }
+
+        #searchInput::placeholder {
+            color: #6f42c1;
+        }
+
         /* Стили для кнопок */
         .buttons {
             display: flex;
@@ -87,6 +104,23 @@
             box-shadow: 0 0 15px rgba(111, 66, 193, 0.5); /* Фиолетовая тень */
         }
 
+        /* Стили для результатов поиска */
+        #results {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .sound-item {
+            padding: 10px;
+            border-bottom: 1px solid #6f42c1;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .sound-item:hover {
+            background-color: #1e1e1e;
+        }
+
         /* Стили для ссылки */
         #link {
             margin-top: 20px;
@@ -108,16 +142,48 @@
 <body>
     <div class="container">
         <h1>SoundTag</h1>
+        <!-- Поисковая строка -->
+        <input type="text" id="searchInput" placeholder="Введите название звука...">
+        <!-- Кнопки -->
         <div class="buttons">
-            <!-- Кнопка "Тутор" -->
             <button onclick="location.href='tutor.html'">Тутор</button>
-            <!-- Кнопка "Поиск звуков" -->
-            <button onclick="location.href='search.html'">Поиск звуков</button>
-            <!-- Кнопка "Наш Telegram" -->
             <button onclick="location.href='https://t.me/ваш_канал'">Наш Telegram</button>
         </div>
+        <!-- Результаты поиска -->
+        <div id="results"></div>
         <!-- Ссылка (если нужно) -->
         <p id="link"></p>
     </div>
+
+    <script>
+        // Пример базы звуков
+        const sounds = [
+            { name: "Звук дождя", url: "sounds/rain.mp3", image: "images/rain.jpg" },
+            { name: "Звук леса", url: "sounds/forest.mp3", image: "images/forest.jpg" },
+            { name: "Звук океана", url: "sounds/ocean.mp3", image: "images/ocean.jpg" },
+        ];
+
+        // Поиск звуков
+        const searchInput = document.getElementById('searchInput');
+        const resultsDiv = document.getElementById('results');
+
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.toLowerCase();
+            resultsDiv.innerHTML = sounds
+                .filter(sound => sound.name.toLowerCase().includes(query))
+                .map(sound => `
+                    <div class="sound-item" onclick="playSound('${sound.url}', '${sound.image}')">
+                        <p>${sound.name}</p>
+                    </div>
+                `)
+                .join('');
+        });
+
+        // Воспроизведение звука
+        function playSound(url, image) {
+            const link = `player.html?sound=${url}&image=${image}`;
+            window.location.href = link;
+        }
+    </script>
 </body>
 </html>
