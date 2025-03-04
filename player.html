@@ -69,17 +69,12 @@
         const audioPlayer = document.getElementById('audioPlayer');
         const soundImage = document.getElementById('soundImage');
 
-        soundImage.src = `images/${imageUrl}`;
-        audioPlayer.src = `sounds/${soundUrl}`;
+        soundImage.src = `images/${imageUrl}`;  // Путь к изображению
+        audioPlayer.src = `sounds/${soundUrl}`; // Путь к звуку
 
         function copyLink() {
-            // Получаем базовый URL (например, https://username.github.io/repository/)
             const baseUrl = window.location.origin + window.location.pathname.split('/').slice(0, -1).join('/');
-            
-            // Формируем ссылку на fullscreen.html
             const fullscreenUrl = `${baseUrl}/fullscreen.html?sound=${soundUrl}&image=${imageUrl}`;
-            
-            // Копируем ссылку в буфер обмена
             navigator.clipboard.writeText(fullscreenUrl).then(() => {
                 alert('Ссылка скопирована: ' + fullscreenUrl);
             });
