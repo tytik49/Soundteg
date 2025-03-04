@@ -52,7 +52,7 @@
 </head>
 <body>
     <div class="player-container">
-        <img id="soundsImages" src="" alt="Изображение">
+        <img id="soundImage" src="" alt="Изображение">
         <audio id="audioPlayer" controls>
             <source src="" type="audio/mpeg">
             Ваш браузер не поддерживает аудио.
@@ -62,19 +62,25 @@
 
     <script>
         const urlParams = new URLSearchParams(window.location.search);
-        const soundUrl = urlParams.get('sounds');
-        const imageUrl = urlParams.get('images');
+        const soundUrl = urlParams.get('sound');
+        const imageUrl = urlParams.get('image');
         const soundName = decodeURIComponent(urlParams.get('name'));
 
         const audioPlayer = document.getElementById('audioPlayer');
-        const soundImage = document.getElementById('soundsImages');
+        const soundImage = document.getElementById('soundImage');
 
+        // Указываем полные пути к файлам
         soundImage.src = `images/${imageUrl}`;  // Путь к изображению
         audioPlayer.src = `sounds/${soundUrl}`; // Путь к звуку
 
         function copyLink() {
+            // Получаем базовый URL (например, https://username.github.io/soundtag/)
             const baseUrl = window.location.origin + window.location.pathname.split('/').slice(0, -1).join('/');
-            const fullscreenUrl = `${baseUrl}/fullscreen.html?sounds=${soundsUrl}&image=${imagesUrl}`;
+            
+            // Формируем ссылку на fullscreen.html
+            const fullscreenUrl = `${baseUrl}/fullscreen.html?sound=${soundUrl}&image=${imageUrl}`;
+            
+            // Копируем ссылку в буфер обмена
             navigator.clipboard.writeText(fullscreenUrl).then(() => {
                 alert('Ссылка скопирована: ' + fullscreenUrl);
             });
