@@ -52,7 +52,7 @@
 </head>
 <body>
     <div class="player-container">
-        <img id="soundImage" src="" alt="Изображение">
+        <img id="soundsImages" src="" alt="Изображение">
         <audio id="audioPlayer" controls>
             <source src="" type="audio/mpeg">
             Ваш браузер не поддерживает аудио.
@@ -67,14 +67,14 @@
         const soundName = decodeURIComponent(urlParams.get('name'));
 
         const audioPlayer = document.getElementById('audioPlayer');
-        const soundImage = document.getElementById('soundImage');
+        const soundImage = document.getElementById('soundsImages');
 
         soundImage.src = `images/${imageUrl}`;  // Путь к изображению
         audioPlayer.src = `sounds/${soundUrl}`; // Путь к звуку
 
         function copyLink() {
             const baseUrl = window.location.origin + window.location.pathname.split('/').slice(0, -1).join('/');
-            const fullscreenUrl = `${baseUrl}/fullscreen.html?sound=${soundUrl}&image=${imageUrl}`;
+            const fullscreenUrl = `${baseUrl}/fullscreen.html?sounds=${soundsUrl}&image=${imagesUrl}`;
             navigator.clipboard.writeText(fullscreenUrl).then(() => {
                 alert('Ссылка скопирована: ' + fullscreenUrl);
             });
