@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SoundTag</title>
     <style>
-        /* Стили для body */
         body {
             font-family: Arial, sans-serif;
-            background-color: #121212; /* Темный фон */
+            background-color: #121212;
             color: white;
             display: flex;
             justify-content: center;
@@ -17,27 +16,21 @@
             margin: 0;
             overflow: hidden;
         }
-
-        /* Анимация появления контейнера */
         .container {
             text-align: center;
             opacity: 0;
             animation: fadeIn 2s forwards;
         }
-
         @keyframes fadeIn {
             to {
                 opacity: 1;
             }
         }
-
-        /* Стили для заголовка */
         h1 {
             font-size: 2.5rem;
             margin-bottom: 20px;
             animation: slideDown 1s ease-out;
         }
-
         @keyframes slideDown {
             from {
                 transform: translateY(-50px);
@@ -48,20 +41,17 @@
                 opacity: 1;
             }
         }
-
-        /* Стили для кнопок */
         .buttons {
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
-
         button {
             margin: 10px;
             padding: 15px 30px;
             font-size: 16px;
             color: white;
-            background: linear-gradient(45deg, #007BFF, #6f42c1); /* Градиент от синего к фиолетовому */
+            background: linear-gradient(45deg, #007BFF, #6f42c1);
             border: none;
             border-radius: 25px;
             cursor: pointer;
@@ -69,7 +59,6 @@
             opacity: 0;
             animation: slideUp 1s ease-out 0.5s forwards;
         }
-
         @keyframes slideUp {
             from {
                 transform: translateY(50px);
@@ -80,49 +69,20 @@
                 opacity: 1;
             }
         }
-
-        /* Эффекты при наведении на кнопки */
         button:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(111, 66, 193, 0.5); /* Фиолетовая тень */
-        }
-
-        /* Стили для ссылки */
-        #link {
-            margin-top: 20px;
-            font-size: 14px;
-            opacity: 0;
-            animation: fadeIn 1s ease-out 1.5s forwards;
-        }
-
-        #link a {
-            color: #6f42c1;
-            text-decoration: none;
-        }
-
-        #link a:hover {
-            text-decoration: underline;
+            box-shadow: 0 0 15px rgba(111, 66, 193, 0.5);
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>SoundTag</h1>
-        <!-- Кнопки -->
         <div class="buttons">
             <button onclick="location.href='tutor.html'">Тутор</button>
-            <button onclick="openSearchPage()">Поиск звуков</button>
+            <button onclick="location.href='search.html'">Поиск звуков</button>
             <button onclick="location.href='https://t.me/ваш_канал'">Наш Telegram</button>
         </div>
-        <!-- Ссылка (если нужно) -->
-        <p id="link"></p>
     </div>
-
-    <script>
-        // Функция для открытия страницы поиска
-        function openSearchPage() {
-            window.location.href = "search.html";
-        }
-    </script>
 </body>
 </html>
