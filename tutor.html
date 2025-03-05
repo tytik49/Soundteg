@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тутор</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .tutor-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .step {
+            margin-bottom: 40px;
+        }
+        .step img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .step h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #6f42c1;
+        }
+        .step p {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #aaa;
+        }
+        .back-button {
+            display: block;
+            width: 200px;
+            margin: 40px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background: linear-gradient(45deg, #007BFF, #6f42c1);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .back-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(111, 66, 193, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <h1>Как пользоваться SoundTag</h1>
+    <div class="tutor-container">
+        <!-- Шаг 1 -->
+        <div class="step">
+            <img src="images/tutor_step1.jpg" alt="Шаг 1">
+            <h2>Шаг 1: Поиск звуков</h2>
+            <p>
+                На главной странице нажмите кнопку "Поиск звуков". Введите ключевое слово (например, "бас" или "стоны") в поисковую строку, чтобы найти нужный звук.
+            </p>
+        </div>
+
+        <!-- Шаг 2 -->
+        <div class="step">
+            <img src="images/tutor_step2.jpg" alt="Шаг 2">
+            <h2>Шаг 2: Выбор звука</h2>
+            <p>
+                Выберите звук из списка. Нажмите на него, чтобы открыть плеер. В плеере вы сможете прослушать звук и скопировать ссылку на него.
+            </p>
+        </div>
+
+        <!-- Шаг 3 -->
+        <div class="step">
+            <img src="images/tutor_step3.jpg" alt="Шаг 3">
+            <h2>Шаг 3: Копирование ссылки</h2>
+            <p>
+                В плеере нажмите кнопку "Скопировать ссылку". Ссылка будет сохранена в буфер обмена.
+            </p>
+        </div>
+
+        <!-- Шаг 4 -->
+        <div class="step">
+            <img src="images/tutor_step4.jpg" alt="Шаг 4">
+            <h2>Шаг 4: Запись ссылки в NFC-метку</h2>
+            <p>
+                1. Скачайте приложение <strong>NFC Tools</strong> из Play Market.<br>
+                2. Откройте приложение и нажмите на кнопку <strong>"Запись"</strong>.<br>
+                3. Выберите <strong>"Добавить запись"</strong> и выберите тип записи <strong>"URL/Ссылка"</strong>.<br>
+                4. Вставьте скопированную ссылку и нажмите <strong>"ОК"</strong>.<br>
+                5. Нажмите <strong>"Записать"</strong> и приложите NFC-метку к телефону.
+            </p>
+        </div>
+
+        <!-- Шаг 5 -->
+        <div class="step">
+            <img src="images/tutor_step5.jpg" alt="Шаг 5">
+            <h2>Шаг 5: Использование NFC-метки</h2>
+            <p>
+                1. Приложите записанную NFC-метку к телефону.<br>
+                2. Откроется сайт с плеером.<br>
+                3. Нажмите на изображение кота, чтобы воспроизвести звук.
+            </p>
+        </div>
+    </div>
+
+    <!-- Кнопка "На главную" -->
+    <a href="index.html" class="back-button">На главную</a>
+</body>
+</html>
